@@ -1,0 +1,193 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 p-sm-2 mt-5">
+        <div class="head">
+          <h4>Expired Subscriptions</h4>
+        </div>
+        <div class="parent">
+          <!-- <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllEndSub'"
+            (click)="setActiveDiv('AllEndSub');showAllSub()">
+
+            <div class="content"> </div>
+            <div class="title">
+              All Subscriptions
+            </div>
+          </div> -->
+
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllEndSubThisDay'"
+            (click)="setActiveDiv('AllEndSubThisDay');showAllEndSubThisDay()">
+            <div class="content">{{countOfEndSub?.subscription_end_today}}</div>
+            <div class="title">
+              End Subscriptions Today
+            </div>
+          </div>
+
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'AllEndSubThisMonth'"
+            (click)="setActiveDiv('AllEndSubThisMonth');showAllEndSubThisMonth()">
+            <div class="content">{{countOfEndSub?.subscription_end_this_month}}</div>
+            <div class="title">
+              End Subscriptions This Month
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="table-wrapper childs" *ngIf="AllEndSub">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscription">
+              <tr>
+                <td>
+                  <h6>{{user.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div> -->
+        <div class="table-wrapper childs" *ngIf="AllEndSubThisDay">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllEndSubscriptionThisDay">
+              <tr>
+              <tr>
+                <td>
+                  <h6>{{user.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="AllEndSubThisMonth">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllEndSubscriptionThisMonth">
+              <tr>
+                <td>
+                  <h6>{{user.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="table-wrapper childs" *ngIf="AllSubThisYear">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscriptionThisYear">
+              <tr>
+                <td>
+                  <h6>{{user.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

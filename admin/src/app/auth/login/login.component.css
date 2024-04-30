@@ -1,0 +1,253 @@
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.parent {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #2b3541;
+    /* filter: blur(30px); */
+    z-index: -1;
+}
+
+.box {
+    height: 680px;
+    background: #323c47;
+    box-shadow: 0 0 15px 5px rgb(240 238 238 / 5%);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.box .child1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    background: #fff;
+    border-radius: inherit;
+}
+
+.box .child2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background: linear-gradient(to bottom right, #ffca00 0%, #ffe06d 49.8%, #3e4c5c 50%, #262f39 100%);
+    border-radius: 50% 0 0 50%;
+}
+
+.car-img {
+    opacity: 0;
+    transform: translate(100px, -20px);
+    transition: all .8s;
+}
+
+.showCar {
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+
+
+.box .child1 .logo img {
+    width: 65px;
+    height: 35px;
+}
+
+.box .child1 .logo h5 {
+    color: #2b3541;
+}
+
+.box .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box .child1 .content {
+    height: 565px;
+}
+
+
+.box .signup .content {
+    height: 560px;
+}
+
+.box .text {
+    text-align: center;
+    color: #3e4c5c;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+
+.box p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.box .signup #signupContent p {
+    display: none;
+}
+
+.box .child1 .content .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 67%;
+    position: relative;
+
+}
+
+::placeholder {
+    color: #3e4c5c;
+    font-size: 11px;
+}
+
+.box .child1 .content .login-form .form-control {
+    font-size: 14px;
+    border: 0.5px solid #fac800;
+    margin-bottom: 15px;
+    color: #3e4c5c;
+}
+
+.box .child1 .content .login-form .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(250, 200, 0, 30%);
+}
+
+.box .child1 .content .login-form .form-control.is-invalid:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(251, 5, 5, 50%);
+}
+
+.box .child1 .content .login-form label {
+    font-size: 14px;
+    color: #3e4c5c;
+    margin-bottom: 8px;
+
+}
+
+.box a {
+    font-size: 13px;
+    color: #3e4c5c;
+    text-decoration: none;
+}
+
+.box a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #fbc900;
+}
+
+.login-form span.input-group-text {
+    font-size: 13px;
+    border-color: #ffca00;
+}
+
+.login-form .remember-forget {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form .remember-forget .form-check-input:checked {
+    background-color: #ffca00;
+    border-color: #ffca00;
+}
+
+.login-form .remember-forget .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(250, 200, 0, 30%);
+}
+
+.login-form .submit {
+    background-color: #3e4c5c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-form .submit:hover {
+    box-shadow: 0 0 6px rgb(60, 73, 89, 15%);
+    background-color: #262f39;
+}
+
+.form-check-input:checked #forgetContent .login-form {
+    height: 205px;
+    justify-content: space-between;
+}
+
+
+small {
+    position: relative;
+    bottom: 12px;
+    left: 12px;
+    font-size: 12px;
+}
+
+
+.alert-warning {
+    padding: 8px;
+    font-size: 15px;
+}
+
+
+
+@media (max-width: 1400px) {
+    .box .child2 img {
+        transform: scale(.8);
+    }
+}
+
+@media (max-width: 992px) {
+    .container .box .child2 {
+        display: none;
+    }
+
+    .container .box .child1 {
+        width: 100%;
+        border-top-right-radius: 0;
+    }
+
+
+    .container .box .signup #signupContent p {
+        display: block;
+    }
+
+    .container .box .child1 .content .login-form {
+        width: 80%;
+    }
+
+    .container .box {
+        margin: 0;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .container .box .child1 .content .login-form {
+        width: 90%;
+
+    }
+
+}
+
+@media (max-width:360px) {
+
+    .container .box .child1 .content .login-form label,
+    .container .box a {
+        font-size: 12px;
+    }
+}

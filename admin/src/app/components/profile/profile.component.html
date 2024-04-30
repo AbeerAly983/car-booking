@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mb-0">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-2 p-sm-4 mt-5">
+        <div class="head-one px-1 px-sm-3 d-flex flex-column justify-content-center position-relative">
+          <h6 class="mb-3"> <i class="fa-solid fa-circle-user mx-2"></i>{{user?.name}}</h6>
+          <h6 class="mb-0"> <i class="fa-solid fa-envelope mx-2"></i>{{user?.email}}</h6>
+          <div class="position-absolute three-dots" (click)="showDropList()">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+          <div class="drop-list position-absolute p-4" *ngIf="dropList" (mouseleave)="dropList=false">
+            <p (click)="showPassForm()">Change Password</p>
+            <p (click)="showEmailForm()" class="mb-0">Change Name or Email</p>
+          </div>
+        </div>
+
+        <div class="parent d-flex flex-column align-items-center">
+
+          <form class="form" #passwordData="ngForm" (ngSubmit)="onSubmit(passwordData.value)" ngNativeValidate *ngIf="showFrom
+          ">
+            <div class="mb-3">
+              <label>Old Password</label>
+              <div class=" input-group mb-2">
+                <input type="{{ showPassword ? 'text' : 'password' }}" name="old_password" class="form-control mb-0"
+                  placeholder="Old Password" pattern="\S{8,}" [class.is-invalid]="oldPass.invalid && oldPass.touched"
+                  #oldPass="ngModel" [ngModel] required>
+                <span class="input-group-text bg-white" (click)="toggleShowPassword()" *ngIf="showPassword">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+                <span class="input-group-text bg-white" (click)="toggleShowPassword()" *ngIf="!showPassword">
+                  <i class="fa-regular fa-eye-slash"></i>
+                </span>
+              </div>
+              <div *ngIf="oldPass.errors && oldPass.touched">
+                <small class="text-danger" *ngIf="oldPass.errors?.['required']">
+                  Password is required</small>
+                <small class="text-danger" *ngIf="oldPass.errors?.['pattern']">
+                  Password must be at least 8 characters</small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>New password</label>
+              <div class=" input-group mb-2">
+                <input type="{{ showNewPassword ? 'text' : 'password' }}" [ngModel] class="form-control mb-0"
+                  placeholder="New Password" pattern="\S{8,}" [class.is-invalid]="newPass.invalid && newPass.touched"
+                  #newPass="ngModel" name="new_password" required>
+                <span class="input-group-text bg-white" (click)="toggleShowNewPassword()" *ngIf="showNewPassword">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+                <span class="input-group-text bg-white" (click)="toggleShowNewPassword()" *ngIf="!showNewPassword">
+                  <i class="fa-regular fa-eye-slash"></i>
+                </span>
+              </div>
+              <div *ngIf="newPass.errors && newPass.touched">
+                <small class="text-danger" *ngIf="newPass.errors?.['required']">
+                  Confirm Password is required</small>
+                <small class="text-danger" *ngIf="newPass.errors?.['pattern']">
+                  Password don't match</small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Confirm Password</label>
+              <div class=" input-group mb-2">
+                <input type="{{ showRepeatPassword ? 'text' : 'password' }}" [ngModel] class="form-control mb-0"
+                  placeholder="Confirm Password" pattern="{{newPass.value}}"
+                  [class.is-invalid]="RepNewPass.invalid && RepNewPass.touched" #RepNewPass="ngModel"
+                  name="new_password_confirmation" required>
+                <span class="input-group-text bg-white" (click)="toggleShowRepeatPassword()" *ngIf="showRepeatPassword">
+                  <i class="fa-regular fa-eye"></i>
+                </span>
+                <span class="input-group-text bg-white" (click)="toggleShowRepeatPassword()"
+                  *ngIf="!showRepeatPassword">
+                  <i class="fa-regular fa-eye-slash"></i>
+                </span>
+              </div>
+              <div *ngIf="RepNewPass.errors && RepNewPass.touched">
+                <small class="text-danger" *ngIf="RepNewPass.errors?.['required']">
+                  Confirm Password is required</small>
+                <small class="text-danger" *ngIf="RepNewPass.errors?.['pattern']">
+                  Password don't match</small>
+              </div>
+            </div>
+
+            <button class="btn d-block border-0 text-white form-control mt-5 submit" type="submit">
+              Change Password
+            </button>
+
+            <div class="alert alert-warning" role="alert" *ngIf="passYes">
+              Password Changed Successfully
+            </div>
+
+            <div class="alert alert-warning" role="alert" *ngIf="passOld">
+              New Password Like Old Password, Change it!
+            </div>
+
+            <div class="alert alert-warning" role="alert" *ngIf="passNo">
+              Old Password not Correct!
+            </div>
+          </form>
+
+          <form class="form" #updateForm="ngForm" (ngSubmit)="onUpdateEmailName(updateForm.value)" ngNativeValidate
+            *ngIf="!showFrom">
+            <div class="mb-2">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name"
+                [class.is-invalid]="name.invalid && name.touched" #name="ngModel" name="name"
+                [(ngModel)]="userData!.name" minlength="2">
+              <div *ngIf="name.errors && name.touched">
+                <small class="text-danger" *ngIf="name.errors?.['minlength']"> must contain at least 2 character
+                </small>
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label>Email</label>
+              <input type="email" class="form-control" name="email" pattern="^\w(\.?\w){2,}@[a-z]{2,10}\.com$"
+                [class.is-invalid]="email.invalid && email.touched" #email="ngModel" [(ngModel)]="userData!.email">
+              <div *ngIf="email.errors && email.touched">
+                <small class="text-danger" *ngIf="email.errors?.['pattern']">Please enter valid
+                  email</small>
+              </div>
+            </div>
+
+            <button class="btn d-block border-0 text-white form-control mt-5 submit" type="submit">
+              Change
+            </button>
+
+            <div class="alert alert-warning" role="alert" *ngIf="passYes">
+              Your Changing updated Successfully
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

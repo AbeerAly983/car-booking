@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div *ngIf="foundData()">
+        <h3 class="head-text">Booking From The Person</h3>
+        <div class="row row-cols-lg-3 row-cols-md-2 g-4">
+            <div *ngFor="let car of cars">
+                <div class="col">
+                    <div class="card position-relative" routerLink="/car/{{car.id}}">
+                        <div class="layer position-absolute h-50 w-100">
+                            <div class="book" routerLink="/bookingCar/{{car.id}}"> Book Car</div>
+                        </div>
+                        <div class="fav">
+                            <img *ngIf="car.photos.length > 0" src="../../../assets/{{car.photos[0].photo}}"
+                                class="card-img" alt="car photo">
+                            <img *ngIf="car.photos.length == 0" src="../../../assets/cars/noPhoto.png" class="card-img"
+                                alt="car photo">
+                            <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h4>{{ car.type }}</h4>
+                            <p>Model: {{ car.model }}</p>
+                            <p>Price: ${{ car.price_rent }}</p>
+                            <p>Location: {{ car.city }}, {{ car.governorate }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100 d-flex justify-content-center mt-5">
+                <ul class="pagination">
+                    <li *ngFor="let link of paginationLinks()" [class.active]="link.active">
+                        <a *ngIf="link.url" (click)="getCars(link.label)">{{ link.label }}</a>
+                        <span *ngIf="!link.url">{{ link.label }}</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="!foundData" class="img-found">
+        <img src="../../../assets/no-data-found.jpg" alt="">
+    </div>
+
+</div>
+<app-footer></app-footer>

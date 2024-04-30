@@ -1,0 +1,7 @@
+{
+    "/api/*":{
+        "target":"https://auto-gen99.000webhostapp.com",
+        "secure": false,
+       "logLevel": "debug"
+    }
+}

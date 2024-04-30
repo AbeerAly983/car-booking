@@ -1,0 +1,347 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 p-sm-2 mt-5">
+        <div class="head">
+          <h4>Cars</h4>
+        </div>
+        <div class="parent" id="parent">
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'showAllCars'"
+            (click)="setActiveDiv('showAllCars');showCars()">
+            <div class="content">{{countCars?.num_all_cars}}</div>
+            <div class="title">
+              NO. All Cars
+            </div>
+          </div>
+
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'allActive'"
+            (click)="setActiveDiv('allActive');showActive()">
+            <div class="content">{{countCars?.num_active_cars}}</div>
+            <div class="title">
+              NO. Active Cars
+            </div>
+          </div>
+
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'allWait'"
+            (click)="setActiveDiv('allWait');showWait()">
+            <div class="content">{{len}}</div>
+            <div class="title">
+              NO. Cars Waiting Approval
+            </div>
+          </div>
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'diable'"
+            (click)="setActiveDiv('diable');showDisable()">
+            <div class="content">{{countCars?.num_disable_cars}}</div>
+            <div class="title">
+              NO. Disabled Cars
+            </div>
+          </div>
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'notPay'"
+            (click)="setActiveDiv('notPay');showNotPay()">
+            <div class="content">{{countCars?.num_not_pay_cars}}</div>
+            <div class="title">
+              NO. Not Paid Cars 
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper childs" *ngIf="showAllCars">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Num Of Rents</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of AllCars">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+                  <h6 *ngIf="car.status == 0">Not Paid</h6>
+                  <h6 *ngIf="car.status == 1">Paid</h6>
+                </td>
+                <td>
+                  {{car.num_rent}}
+                </td>
+                <td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="showActiveCars">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">Num Of Rents</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of All_Active_Cars">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+                  {{car.num_rent}}
+                </td>
+                <td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="showWaitCars">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of All_Cars_Wait_Approve">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+                  <h6 *ngIf="car.status == 0">Not Paid</h6>
+                  <h6 *ngIf="car.status == 1">Paid</h6>
+                </td>
+                <td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="showDisableCar">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">Num Of Rents</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of All_Disable_car">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+                  {{car.num_rent}}
+                </td>
+                <td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrapper childs" *ngIf="showNotPayCars">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of All_Not_Pay_Cars">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

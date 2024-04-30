@@ -1,0 +1,167 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar-profile></app-sidebar-profile>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 mt-5">
+        <div class="head-one d-flex align-items-center justify-content-evenly flex-md-row flex-column">
+          <h4>MY Cars</h4>
+          <div class="search">
+            <input class="form-control" type="search" placeholder="Search By Type . . ." [(ngModel)]="searchText"
+              (input)="searchCar()">
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">city</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">price_rent</th>
+                <th scope="col">num_rent</th>
+                <th scope="col">Approval</th>
+                <th scope="col">Payment</th>
+                <th scope="col">
+                  Edit
+                </th>
+                <th scope="col">Control</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of userCars">
+              <tr>
+                <td>
+                  {{car.id}}
+                </td>
+                <td class="photo">
+                  <img src="assets/{{car.photos[0].photo}}" alt="carPhoto" *ngIf="car.photos.length > 0">
+                  <img src="assets/cars/noPhoto.png" alt="carPhoto" *ngIf="car.photos.length == 0">
+                </td>
+                <td>
+                  {{car.type}}
+                </td>
+                <td>
+                  {{car.model}}
+                </td>
+                <td>
+                  {{car.governorate}}
+                </td>
+                <td>
+                  {{car.city}}
+                </td>
+                <td>
+                  {{car.address}}
+                </td>
+                <td>
+                  {{car.phone}}
+                </td>
+                <td>
+                  {{car.first_release}}
+                </td>
+                <td>
+                  {{car.price_rent}}
+                </td>
+                <td>
+                  {{car.num_rent}}
+                </td>
+                <td>
+                  <p *ngIf="car.approved" class="text-success">Approved</p>
+                  <p *ngIf="!car.approved" class="text-danger">Not Approved</p>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-success" *ngIf="car.approved && car.status"
+                    disabled>Payed</button>
+                  <button type="button" class="btn btn-outline-warning" *ngIf="car.approved && !car.status"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"
+                    (click)="carForm=car">
+                    Go Pay
+                  </button>
+                </td>
+                <td>
+                  <a routerLink="/profile/myCars/edit-car/{{car.id}}">
+                    <i class="fa-solid fa-pen-to-square"></i></a>
+                </td>
+                <td>
+                  <div *ngIf="car.status">
+                    <button type="button" class="btn btn-outline-success" (click)="enableOrDisable(car.id)"
+                      *ngIf="car.disable ==1">Enable</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="enableOrDisable(car.id)"
+                      *ngIf="car.disable==0">Disable</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- payment -->
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header justify-content-end pt-4 pe-4">
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <!-- plan -->
+    <div class="payment-options d-flex justify-content-center align-items-center flex-md-row flex-column text-white mb-5">
+      <div class="payment-option d-flex flex-column justify-content-evenly align-items-center" id="card1"
+        (mouseenter)="onCardHover(true, 1)" (mouseleave)="onCardHover(false, 1)" [class.hovered]="card1Hovered">
+        <h3>Monthly Plan</h3>
+        <p>Get access to our services for one month. Ideal for short-term needs and flexibility.</p>
+        <p class="fw-bold">200$</p>
+        <a class="btn btn-outline-warning w-50" (click)="onSelectPlan('200','30')">Subscribe</a>
+      </div>
+
+      <div class="payment-option d-flex flex-column justify-content-evenly align-items-center" id="card2"
+        [class.hovered]="card1Hovered || card3Hovered">
+        <h3>3-Month Plan</h3>
+        <p>Enjoy our services for three months. Perfect for those looking for a balance of savings and commitment.
+        </p>
+        <p class="fw-bold">400$</p>
+        <a class="btn btn-outline-warning w-50" (click)="onSelectPlan('400','90')">Subscribe</a>
+      </div>
+
+      <div class="payment-option d-flex flex-column justify-content-evenly align-items-center" id="card3"
+        (mouseenter)="onCardHover(true, 3)" (mouseleave)="onCardHover(false, 3)" [class.hovered]="card3Hovered">
+        <h3>Yearly Plan</h3>
+        <p>Unlock access to our services for a whole year. Best value for long-term users seeking maximum savings.
+        </p>
+        <p class="fw-bold">1800$</p>
+        <a class="btn btn-outline-warning w-50" (click)="onSelectPlan('1800','360')">Subscribe</a>
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="showAlertSelectPlan">
+        {{selectPlanMsg}}
+      </div>
+    </div>
+
+    <!-- form payment -->
+    <form (ngSubmit)="onSubmitPayment(carForm)" class="container mt-0 d-none position-relative" id="card">
+      <div id="card-element" class="p-3"></div>
+      <button type="submit" class="btn btn-outline-warning my-3 w-100">Submit Payment</button>
+      <div class="alert alert-warning" role="alert" *ngIf="paymentSuccess">
+        Payment Successfully, The Car is added
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="paymentError">
+        Your card number is incomplete.
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<app-footer></app-footer>

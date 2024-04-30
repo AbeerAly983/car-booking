@@ -1,0 +1,144 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+    <div class="row flex-nowrap ">
+        <div class="col-2 p-0">
+            <app-sidebar-profile></app-sidebar-profile>
+        </div>
+
+
+        <div class="col-10">
+            <div class="container d-flex flex-column align-items-center p-0">
+
+                <!--form Add car -->
+                <form class="form" #carFrom="ngForm" (ngSubmit)="onSubmit(carFrom.value)" ngNativeValidate>
+                    <h4 class="mb-5">ADD CAR</h4>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Type:</label>
+                        <select class="form-control" name="type" [(ngModel)]="selectedCarType" #type="ngModel"
+                            [class.is-invalid]="type.invalid && type.touched" required>
+                            <option value="" disabled selected>Select Car Type</option>
+                            <option *ngFor="let carType of carTypes" [value]="carType">{{ carType }}</option>
+                        </select>
+
+                        <div *ngIf="type.errors && type.touched">
+                            <small class="text-danger" *ngIf="type.errors?.['required']">Type is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Model:</label>
+                        <input type="text" class="form-control" name="model" [ngModel] #model="ngModel"
+                            placeholder="Enter Model" [class.is-invalid]="model.invalid && model.touched" minlength="2"
+                            required>
+                        <div *ngIf="model.errors && model.touched">
+                            <small class="text-danger" *ngIf="model.errors?.['required']">Model is required</small>
+                            <small class="text-danger" *ngIf="model.errors?.['minlength']">Please enter at least 1
+                                character</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">First Release:</label>
+                        <input type="number" class="form-control" min="1900" max="9999" step="1" pattern="[0-9]{4}"
+                            placeholder="YYYY" name="first_release" [ngModel] #release="ngModel"
+                            [class.is-invalid]="release.invalid && release.touched" required>
+                        <div *ngIf="release.errors && release.touched">
+                            <small class="text-danger" *ngIf="release.errors?.['required']">First Release is
+                                required</small>
+                            <small class="text-danger"
+                                *ngIf="release.errors?.['pattern'] || release.errors?.['min']">First
+                                Release is not valid</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Price:</label>
+                        <input type="number" class="form-control" name="price_rent" [ngModel] #price="ngModel"
+                            placeholder="Enter Price" [class.is-invalid]="price.invalid && price.touched"
+                            pattern="^\d+(\.\d+)?$" required>
+                        <div *ngIf="price.errors && price.touched">
+                            <small class="text-danger" *ngIf="price.errors?.['required']">Price is required</small>
+                            <small class="text-danger" *ngIf="price.errors?.['pattern']">
+                                Please enter valid price
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Governorate:</label>
+                        <input type="text" class="form-control" name="governorate" [ngModel] #gov="ngModel"
+                            placeholder="Enter Governorate" [class.is-invalid]="gov.invalid && gov.touched"
+                            minlength="5" required>
+                        <div *ngIf="gov.errors && gov.touched">
+                            <small class="text-danger" *ngIf="gov.errors?.['minlength']">Please enter at least 5
+                                character</small>
+                            <small class="text-danger" *ngIf="gov.errors?.['required']">Governorate is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">City:</label>
+                        <input type="text" class="form-control" name="city" [ngModel] #city="ngModel"
+                            placeholder="Enter City" [class.is-invalid]="city.invalid && city.touched" minlength="5"
+                            required>
+                        <div *ngIf="city.errors && city.touched">
+                            <small class="text-danger" *ngIf="city.errors?.['minlength']">Please enter at least 5
+                                character</small>
+                            <small class="text-danger" *ngIf="city.errors?.['required']">City is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Address:</label>
+                        <input type="text" class="form-control" name="address" [ngModel] #address="ngModel"
+                            placeholder="Enter Address" [class.is-invalid]="address.invalid && address.touched"
+                            minlength="5" required>
+                        <div *ngIf="address.errors && address.touched">
+                            <small class="text-danger" *ngIf="address.errors?.['minlength']">Please enter at least 5
+                                character</small>
+                            <small class="text-danger" *ngIf="address.errors?.['required']">Address is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Phone:</label>
+                        <div class=" input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+20</span>
+                            <input type="number" class="form-control" name="phone" [ngModel] #phone="ngModel"
+                                placeholder="Enter Phone Number" [class.is-invalid]="phone.invalid && phone.touched"
+                                pattern="^(1|01)[0125]\d{8}$" required>
+                        </div>
+                        <div *ngIf="phone.errors && phone.touched">
+                            <small class="text-danger" *ngIf="phone.errors?.['pattern']">
+                                Please enter valid phone number
+                            </small>
+                            <small class="text-danger" *ngIf="phone.errors?.['required']">Phone is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Images:</label>
+                        <input type="file" class="form-control" accept="image/*" multiple #photo="ngModel" [ngModel]
+                            (change)="onPhotoSelected($event)" required>
+                        <div *ngIf="photo.errors && photo.touched">
+                            <small class="text-danger" *ngIf="photo.errors?.['required']">Images is required</small>
+                        </div>
+                    </div>
+
+                    <button class="btn w-100 submit mt-3" type="submit">Add</button>
+
+                    <div class="alert alert-warning" role="alert" *ngIf="valid">
+                        The car added successfully.
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<app-footer></app-footer>

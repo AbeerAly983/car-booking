@@ -1,0 +1,178 @@
+.footer {
+  background-color: #262f39;
+  color: #fff;
+  padding-top: 25px;
+}
+
+.container-fluid{
+  min-height: fit-content !important;
+}
+
+.social-network {
+  font-size: 13px;
+}
+
+.social-network .text-capitalize ,  
+.copyrights {
+  font-size: 14px;
+}
+
+a {
+  color: #ffd94e;
+}
+
+a:hover {
+  color: #ffca00;
+}
+
+.container-fluid {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.details {
+  border-top: solid 1px #cba81c;
+  border-bottom: #cba81c solid 1px;
+  justify-content: space-between;
+}
+
+.col-lg-4 {
+  margin-top: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 120px;
+  height: 80px;
+}
+
+.list {
+  padding: 12px;
+}
+
+hr {
+  opacity: 0;
+}
+
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin-top: 14px;
+}
+
+.list ul li {
+  margin-top: 7px;
+}
+
+.link a {
+  text-decoration: none;
+  font-size: 14px !important;
+  margin: 0 0 7px -30px;
+  transition: all 0.5s ease;
+  color: #fff;
+}
+
+.list a:hover {
+  padding-left: 7px;
+  color: #ffca00;
+}
+
+.fa-angle-down {
+  opacity: 0;
+}
+
+.arrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .fa-angle-down:hover {
+  box-shadow: 0 0 15px 5px #dfcf1a;
+  border-radius: 3%;
+} */
+
+.active ul {
+  display: block;
+}
+
+.active .fa-angle-down {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 992px) {
+  .container-fluid {
+    width: 98%;
+  }
+
+  .col-lg-4 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px #cba81c solid;
+  }
+
+  .logo {
+    justify-content: start;
+    padding: 12px;
+  }
+
+  .logo img {
+    width: 80px;
+    height: 50px;
+  }
+
+  .logo h3 {
+    font-size: 22px;
+  }
+
+  .border-footer {
+    border-bottom: 1px #cba81c solid;
+  }
+
+  .col-lg-4 {
+    display: none;
+  }
+
+
+  .fa-angle-down {
+    color: #ffd94e;
+    opacity: 1;
+    cursor: pointer;
+    float: right;
+    transition: all 0.5s ease;
+  }
+
+  ul {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .social-network {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.text-details{
+  line-height: 2;
+  font-size: 14px;
+  word-spacing: 1px;
+}

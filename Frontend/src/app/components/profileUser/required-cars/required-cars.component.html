@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar-profile></app-sidebar-profile>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 mt-5">
+        <div class="head">
+          <h4>Required Cars</h4>
+        </div>
+        <div class="table-wrapper childs">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">NO Requests</th>
+                <th scope="col">NO Rents</th>
+                <th scope="col">Info</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of waitCars">
+              <tr>
+                <td>
+                  {{car.id}}
+                </td>
+                <td>
+                  {{car.type}}
+                </td>
+                <td>
+                  {{car.model}}
+                </td>
+                <td>
+                  {{car.governorate}}
+                </td>
+                <td>
+                  {{car.city}}
+                </td>
+                <td>
+                  {{car.address}}
+                </td>
+                <td>
+                  {{car.phone}}
+                </td>
+                <td>
+                  {{car.first_release}}
+                </td>
+                <td>
+                  {{car.price_rent}}
+                </td>
+                <td>
+                  {{car.num_waiting_rent}}
+                </td>
+                <td>
+                  {{car.num_rent}}
+                </td>
+                <td>
+
+                  <button type="button" class="btn btn-outline-warning"
+                    routerLink="/profile/requiredCars/viewRequests/{{car.id}}">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

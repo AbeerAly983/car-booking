@@ -1,0 +1,24 @@
+
+#backSignup {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(62, 76, 92 ,.8);
+}
+
+#backSignup:hover {
+    color: #262f39;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.fa-arrow-left {
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+.mt-6{
+    margin-top: 70px;
+}

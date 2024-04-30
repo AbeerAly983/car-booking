@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="container position-relative">
+    <div *ngIf="foundData()">
+
+        <div class="row justify-content-between">
+            <div class="col-xl-5 col-12">
+                <h2 class="ms-sm-0 ms-4">{{carDetails.type}} {{carDetails.model}}</h2>
+                <div class="row justify-content-sm-between justify-content-center align-items-center my-4">
+                    <h6 class="col-sm-5 col-10">Price Day: {{carDetails.price_rent}}$</h6>
+                    <div class="book col-sm-5 col-10" routerLink="/bookingCar/{{carDetails.id}}"> Book Car</div>
+                </div>
+
+                <div class="content text-white row justify-content-sm-between justify-content-center">
+                    <div class="col-sm-5 col-10">
+                        <h6>Governorate:</h6>
+                        <p>{{carDetails.governorate}}</p>
+                    </div>
+                    <div class="col-sm-5 col-10">
+                        <h6>City: </h6>
+                        <p>{{carDetails.city}}</p>
+                    </div>
+                    <div class="col-sm-5 col-10">
+                        <h6>Address:</h6>
+                        <p>{{carDetails.address}}</p>
+                    </div>
+                    <div class="col-sm-5 col-10">
+                        <h6>Owner:</h6>
+                        <p>{{carDetails.owner_name}}</p>
+                    </div>
+                    <div class="col-sm-5 col-10">
+                        <h6>Owner Type: </h6>
+                        <p>{{carDetails.type_owner}}</p>
+                    </div>
+                    <div class="col-sm-5 col-10">
+                        <h6>Phone:</h6>
+                        <p>{{carDetails.phone}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-xl-7 col-12 ">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+                    data-bs-interval="2500">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleIndicators"
+                            *ngFor="let photoCar of carDetails.photos; let i = index" [attr.data-bs-slide-to]="i"
+                            [class.active]="i === 0"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" *ngFor="let photoCar of carDetails.photos; let i = index"
+                            [class.active]="i === 0">
+                            <img src="../../../../assets/{{photoCar.photo}}" class="d-block w-75 m-auto" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div *ngIf="!foundData()" class="img-found">
+        <img src="../../../../assets/no-data-found.jpg" alt="">
+    </div>
+
+</div>
+<app-footer></app-footer>

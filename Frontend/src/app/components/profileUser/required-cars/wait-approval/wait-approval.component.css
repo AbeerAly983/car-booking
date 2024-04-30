@@ -1,0 +1,30 @@
+button{
+  background-color: #fff;
+  width: 25px;
+  border: none;
+}
+.alert {
+  position: fixed;
+  width: 70%;
+  text-align: center;
+  padding: 50px;
+  top: 50%;
+  left: 24%;
+}
+.btn {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+}
+.head{
+  text-align: center;
+    color: #2c3845;
+    height: 70px;
+  margin-bottom: 50px;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}

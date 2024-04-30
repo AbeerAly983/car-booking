@@ -1,0 +1,176 @@
+*,
+html {
+    scroll-behavior: smooth !important;
+}
+
+.head-one {
+  color: #2c3845;
+  margin-bottom: 50px;
+  height: 100px;
+  padding: 0 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.form-control {
+  width: 100%;
+}
+
+::placeholder {
+  font-size: 13px;
+}
+
+.table-wrapper  a {
+  color: #2c3845;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  text-align: center;
+  margin-bottom: 50px;
+  min-height: 300px;
+  padding: 0 30px;
+  border-radius: 10px;
+  box-shadow: rgba(137, 152, 164, 0.3) 0px 1px 2px 0px, rgba(128, 165, 194, 0.15) 0px 1px 3px 1px;
+}
+
+tbody,
+td,
+tfoot,
+th,
+tr {
+  border-style: none;
+}
+
+thead {
+  color: #2c3845;
+  border-bottom: 1px solid #2c3845;
+  ;
+  height: 70px;
+}
+
+td {
+  padding: 1.5rem .5rem;
+  color: #2c3845;
+  font-size: 15px;
+}
+
+th {
+  padding: 20px 10px;
+}
+
+td .btn {
+  font-size: 14px;
+  width: 70px;
+} 
+
+.photo img {
+  width: 130px;
+  height: 100px;
+  margin-top: -20px;
+}
+
+.search {
+  width: 80%;
+}
+
+@media (max-width: 767px) {
+  .search {
+    width: 100%;
+  }
+
+  .alert {
+    width: 80% !important;
+  }
+
+  #card{
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 920px) {
+  table {
+    font-size: 14px;
+  }
+}
+
+
+/* payment */
+.offcanvas {
+  background-color: rgb(255 255 255 / 93%);
+  min-height: 100vh;
+}
+
+.payment-option {
+  width: 300px;
+  background-color: #45566b;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 350px;
+}
+
+.payment-option p {
+  padding: 0 15px;
+  font-size: 14px;
+  padding: 0 18px;
+  font-size: 14px;
+  line-height: 1.8;
+  word-spacing: 1px;
+  margin: 0;
+}
+
+.payment-option .btn {
+  font-size: 14px;
+}
+
+.payment-option h3 {
+  font-size: 18px;
+  margin: 15px 0 0;
+}
+
+.payment-option:hover {
+  color: #edecec;
+  transform: scale(1.03);
+  transition: all .5s;
+}
+
+#card2 {
+  background-color: #303c49;
+}
+
+#card1.hovered,
+#card3.hovered {
+  background-color: #303c49;
+}
+
+#card2.hovered {
+  background-color: #45566b;
+}
+
+#card {
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  width: 900px;
+  padding: 20px;
+}
+
+.alert {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  width: 50%;
+  text-align: center;
+  font-size: 14px;
+}

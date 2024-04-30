@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 p-sm-2 mt-5">
+        <div class="head">
+          <h4>Waiting Approval Cars</h4>
+        </div>
+        <div class="table-wrapper childs">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Model</th>
+                <th scope="col">Governorate</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">First Release</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Control</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of waitCarsApproval">
+              <tr>
+                <td>
+                  <h6>{{car.id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.user_id}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.type}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.model}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.governorate}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.city}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.address}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.phone}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.first_release}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.price_rent}}</h6>
+                </td>
+                <td>
+                  <h6>{{car.status}}</h6>
+                </td>
+                <td>
+                  <div>
+                    <button class="approve" type="button mx-3" (click)="approveCar(car.id)"><i
+                        class="fa-solid fa-check "></i>
+                      <div class="alert alert-success" role="alert" *ngIf="approve">
+                        <p>Approved Successfully</p>
+                      </div>
+                    </button>
+                    <button class="approve" type="button" (click)="delete=true; idCheckAlert=car.id">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                  </div>
+                </td>
+              </tr>
+              <div class="alert alert-danger" role="alert" *ngIf="delete && idCheckAlert==car.id">
+                <p>Are you sure, you want to delete the car whose ID is <b>{{car.id}}</b>?</p>
+                <button type="button" class="btn btn-outline-success" (click)=" delete = false">Cancel</button>
+                <button type="button" class="btn btn-outline-danger" (click)="deleteCar(car.id)">OK</button>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

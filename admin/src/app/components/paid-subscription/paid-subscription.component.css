@@ -1,0 +1,7 @@
+.header{
+  margin: 25px auto;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 7px  #3644543d;
+  transition: 0.5s all;
+}

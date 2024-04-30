@@ -1,0 +1,217 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 p-sm-2 mt-5">
+        <div class="head">
+          <h4>Paid Subscriptions</h4>
+        </div>
+        <div class="parent">
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllPaidSub'"
+            (click)="setActiveDiv('AllPaidSub');showAllPaidSub()">
+
+            <div class="content">{{AllPaidLength}}</div>
+            <div class="title">
+              All Paid Subscriptions
+            </div>
+          </div>
+
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllPaidSubToday'"
+            (click)="setActiveDiv('AllPaidSubToday');showAllPaidSubToday()">
+            <div class="content">{{countOfAllPaidSub?.num_subscription_paid_today}}</div>
+            <div class="title">
+              Paid Subscriptions Today
+            </div>
+          </div>
+
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'AllPaidSubThisMonth'"
+            (click)="setActiveDiv('AllPaidSubThisMonth');showAllPaidSubThisMonth()">
+            <div class="content">{{countOfAllPaidSub?.num_subscription_paid_this_month}}</div>
+            <div class="title">
+              Paid Subscriptions This Month
+            </div>
+          </div>
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'AllPaidSubThisYear'"
+            (click)="setActiveDiv('AllPaidSubThisYear');showAllPaidSubThisYear()">
+            <div class="content">{{countOfAllPaidSub?.num_subscription_paid_this_year}}</div>
+            <div class="title">
+              Paid Subscriptions This Year
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="AllPaidSub">
+          <h6 class="header">All Profit : {{profit?.total_sum_subscription}} </h6>
+          <div class="table-wrapper childs">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Car Id</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Sub. Duration</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of AllPaidSubscription">
+                <tr>
+                  <td>
+                    <h6>{{user.id}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.start_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.end_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.car_id}}</h6>
+                  </td>
+                  <th>
+                    <h6>{{user.price}}</h6>
+                  </th>
+                  <th>
+                    <h6>{{user.Subscription_period}}</h6>
+                  </th>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="AllPaidSubToday">
+          <h4 class="header">All Profit Today : {{profit?.sum_subscription_paid_today}} </h4>
+          <div class="table-wrapper childs">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Car Id</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Sub. Duration</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of AllPidSubscriptionToday">
+                <tr>
+                <tr>
+                  <td>
+                    <h6>{{user.id}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.start_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.end_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.car_id}}</h6>
+                  </td>
+                  <th>
+                    <h6>{{user.price}}</h6>
+                  </th>
+                  <th>
+                    <h6>{{user.Subscription_period}}</h6>
+                  </th>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="AllPaidSubThisMonth">
+          <h4 class="header">All Profit This Month : {{profit?.sum_subscription_paid_this_month }}</h4>
+          <div class="table-wrapper childs">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Car Id</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Sub. Duration</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of AllPidSubscriptionThisMonth">
+                <tr>
+                  <td>
+                    <h6>{{user.id}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.start_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.end_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.car_id}}</h6>
+                  </td>
+                  <th>
+                    <h6>{{user.price}}</h6>
+                  </th>
+                  <th>
+                    <h6>{{user.Subscription_period}}</h6>
+                  </th>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="AllPaidSubThisYear">
+          <h4 class="header">All Profit This Year : {{profit?.sum_subscription_paid_this_year}} </h4>
+          <div class="table-wrapper childs">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Car Id</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Sub. Duration</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let user of AllPaidSubscriptionThisYear">
+                <tr>
+                  <td>
+                    <h6>{{user.id}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.start_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.end_date}}</h6>
+                  </td>
+                  <td>
+                    <h6>{{user.car_id}}</h6>
+                  </td>
+                  <th>
+                    <h6>{{user.price}}</h6>
+                  </th>
+                  <th>
+                    <h6>{{user.Subscription_period}}</h6>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

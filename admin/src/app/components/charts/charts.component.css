@@ -1,0 +1,13 @@
+.col-md-2 {
+  min-height: 100vh;
+}
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+  gap: 30px;
+}
+.col-md-6 {
+  margin-top: 50px !important;
+}

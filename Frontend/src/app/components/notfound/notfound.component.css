@@ -1,0 +1,44 @@
+
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 6rem;
+    margin-bottom: 0;
+    color: #f44336;
+    /* Red color */
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    color: #555;
+}
+
+/* Add animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.not-found-container {
+    animation: fadeIn 0.8s ease-in-out;
+}

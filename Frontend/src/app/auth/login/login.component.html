@@ -1,0 +1,92 @@
+<div class="parent">
+  <div class="layer"></div>
+  <div class="container">
+    <div class="row box">
+      <div class="child1">
+        <div class="logo d-flex align-items-center m-4">
+          <img src="../../../assets/logo-light.png" alt="logo">
+          <h5 class="m-0 fw-bold">AUTOGEN</h5>
+        </div>
+        <!-- login -->
+        <div id="loginContent">
+          <div class="content">
+
+            <div class="text">
+              <h2>Welcome Back</h2>
+              <p>Please enter your details.</p>
+            </div>
+
+            <form class="login-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" ngNativeValidate>
+
+              <div class="mb-2">
+                <label>Email</label>
+                <input type="email" id="email" class="form-control" placeholder="address@email.com"
+                  pattern="^\w(\.?\w){2,}@[a-z]{2,10}\.com$" [class.is-invalid]="email.invalid && email.touched"
+                  #email="ngModel" name="email" [ngModel] required [disabled]="loading">
+                <div *ngIf="email.errors && email.touched" class="error-text">
+                  <small class="text-danger" *ngIf="email.errors?.['required']">Email is required</small>
+                  <small class="text-danger" *ngIf="email.errors?.['pattern']">Please enter valid
+                    email</small>
+                </div>
+              </div>
+
+              <div class="mb-2">
+                <label>Password</label>
+                <div class=" input-group mb-3">
+                  <input type="{{ showPassword ? 'text' : 'password' }}" [ngModel]
+                    class="form-control mb-0" placeholder="Password" pattern="\S{8,}"
+                    [class.is-invalid]="pass.invalid && pass.touched" #pass="ngModel" name="password" required
+                    [disabled]="loading">
+                  <span class="input-group-text bg-white" (click)="toggleShowPassword()" *ngIf="showPassword">
+                    <i class="fa-regular fa-eye"></i>
+                  </span>
+                  <span class="input-group-text bg-white" (click)="toggleShowPassword()" *ngIf="!showPassword">
+                    <i class="fa-regular fa-eye-slash"></i>
+                  </span>
+                </div>
+                <div *ngIf="pass.errors && pass.touched" class="error-text">
+                  <small class="text-danger" *ngIf="pass.errors?.['required']">
+                    Password is required</small>
+                  <small class="text-danger" *ngIf="pass.errors?.['pattern']">
+                    Password must be at least 8 characters</small>
+                </div>
+              </div>
+
+              <div class="remember-forget mb-4 mt-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="myCheckbox">
+                  <a class="form-check-label">Remember me</a>
+                </div>
+                <a id="forgetPass" routerLink="/forgetPassword"> Forget password ?</a>
+              </div>
+
+              <!-- alert email is invalid -->
+              <div class="alert alert-warning" role="alert" *ngIf="emailInvalid">
+                Please enter correct email!
+              </div>
+              <!-- alert password is invalid -->
+              <div class="alert alert-warning" role="alert" *ngIf="passwordInvalid">
+                Please enter correct password!
+              </div>
+
+              <button class="btn d-block border-0 text-white form-control mb-4 submit" type="submit"
+                [disabled]="loading">
+                <span class="spinner me-2" *ngIf="loading">
+                  <i class="fa-solid fa-circle-notch fa-spin"></i>
+                </span>
+                <span class="">Sign in</span>
+              </button>
+
+              <p>Don't have any account? <a routerLink="/signup"> Sign up</a></p>
+
+            </form>
+          </div>
+        </div>
+        <!-- end login -->
+      </div>
+      <div class="child2">
+        <img class="car-img" src="../../../assets/carAuth.png" alt="car" id="carImg">
+      </div>
+    </div>
+  </div>
+</div>

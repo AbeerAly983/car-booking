@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar-profile></app-sidebar-profile>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 mt-5">
+        <div class="head">
+          <h4>MY Booking Cars</h4>
+        </div>
+        <div class="table-wrapper childs">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Car ID</th>
+                <th scope="col">My Phone</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">NO Days</th>
+                <th scope="col">Total Price</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let car of userBookingCars">
+              <tr>
+                <td routerLink="/car/{{car.car_id}}" class="cursor-pointer">
+                  {{car.car_id}}
+                </td>
+                <td>
+                  {{car.phone}}
+                </td>
+                <td>
+                  {{car.start_date}}
+                </td>
+                <td>
+                  {{car.end_date}}
+                </td>
+                <td>
+                  {{car.num_days}}
+                </td>
+                <td>
+                  {{car.total_price}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

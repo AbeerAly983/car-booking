@@ -1,0 +1,135 @@
+.col-md-2 {
+  min-height: 100vh;
+}
+
+
+.head {
+  text-align: center;
+  color: #2c3845;
+  height: 70px;
+  margin-bottom: 50px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+  gap: 30px;
+}
+
+.parent .child {
+  width: 100%;
+  min-height: 135px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  box-shadow: 0 0 7px rgba(44, 56, 69, 20%);
+  transition: 0.5s;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.parent .child .content {
+  background-color: #364454;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 20px 30px;
+  min-height: 50px;
+  border-radius: 50%;
+}
+.parent .child .title{
+  font-size: 14px;
+}
+
+.parent .child:hover .content {
+  background-color: #fff;
+  color:#2c3845;
+  border-color: #364454;
+  transition: 0.5s;
+  box-shadow: rgba(150, 150, 150, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.child.active {
+  background-color: #efefef;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  min-height: 50vh;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 30px;
+  border-radius: 10px;
+  box-shadow: rgba(137, 152, 164, 0.3) 0px 1px 2px 0px, rgba(128, 165, 194, 0.15) 0px 1px 3px 1px;
+
+}
+
+tbody,
+td,
+tfoot,
+th,
+tr {
+  border-style: none;
+  font-size: 15px;
+}
+
+thead {
+  color: #2c3845;
+  border-bottom: 1px solid #2c3845;
+  height: 70px;
+}
+
+td {
+  padding: 1.5rem .5rem;
+}
+
+th {
+  padding: 20px 10px;
+}
+
+h6 {
+  color: #2c3845;
+}
+
+.approve {
+  background-color: #fff;
+  width: 25px;
+  border: none;
+}
+
+.alert {
+  position: fixed;
+  width: 70%;
+  text-align: center;
+  padding: 50px;
+  top: 50%;
+  left: 24%;
+}
+
+.btn {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .parent {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 920px) {
+  table {
+    font-size: 14px;
+  }
+}

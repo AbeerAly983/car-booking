@@ -1,0 +1,77 @@
+.col-md-2{
+  min-height: 100vh;
+}
+
+.head{
+  text-align: center;
+    color: #2c3845;
+    height: 70px;
+  margin-bottom: 50px;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  min-height: 50vh;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 30px;
+  border-radius: 10px;
+  box-shadow: rgba(137, 152, 164, 0.3) 0px 1px 2px 0px, rgba(128, 165, 194, 0.15) 0px 1px 3px 1px;
+
+}
+
+tbody, td, tfoot, th,tr{
+  border-style: none;
+  font-size: 15px;
+}
+
+thead
+{
+  color: #2c3845;
+  border-bottom:1px solid #2c3845; ;
+  height: 70px;
+}
+
+td{
+  padding: 1.5rem .5rem;
+}
+
+th{
+  padding: 20px 10px;
+}
+
+h6{
+  color: #2c3845;
+}
+
+.approve{
+  background-color: #fff;
+  width: 25px;
+  border: none;
+}
+.alert {
+  position: fixed;
+  width: 70%;
+  text-align: center;
+  padding: 50px;
+  top: 50%;
+  left: 24%;
+}
+
+.btn {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+}
+
+@media (max-width: 920px) {
+  table {
+    font-size: 14px;
+  }
+}

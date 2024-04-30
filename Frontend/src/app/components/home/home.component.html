@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid my-5">
+  <div class="search-box m-2 m-md-4">
+    <input class="form-control mb-5" type="search" placeholder="Search By Type . . ." [(ngModel)]="searchText"
+      (input)="searchCar()">
+  </div>
+
+  <div class="parent">
+    <div class="row mx-2 justify-content-center">
+      <div class="col-xl-2 col-md-3 col-sm-4 col-12 filter">
+        <div class="filter-title d-flex justify-content-sm-between justify-content-evenly align-items-center">
+          <h4 class="w-45">Filter</h4>
+          <div class="w-45 text-end d-block d-sm-none cursor-pointer" (click)="showFilter= !showFilter"><i
+              class="fa-solid fa-angle-down"></i></div>
+        </div>
+        <div class="check-filter mx-2 mt-2 mb-3 d-sm-block" [hidden]="!showFilter">
+          <form>
+            <div class="filter-type border-top">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="my-3">Type</h5>
+                <div class="w-45 text-end cursor-pointer" (click)="showTypes= !showTypes"><i
+                    class="fa-solid fa-angle-down"></i></div>
+              </div>
+              <div *ngIf="showTypes">
+                <div class="form-check" *ngFor="let type of types">
+                  <input class="form-check-input" [id]="type" (change)="filterTypesCars()" type="checkbox" name="type"
+                    [(ngModel)]="selectedTypes[type]">
+                  <label class="form-check-label" [for]="type">{{ type }}</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-type">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="my-3">Governorate</h5>
+                <div class="w-45 text-end cursor-pointer" (click)="showGov= !showGov"><i
+                    class="fa-solid fa-angle-down"></i></div>
+              </div>
+              <div *ngIf="showGov">
+                <div class="form-check" *ngFor="let governorate of governorate">
+                  <input class="form-check-input" [id]="governorate" (change)="filterGovCars()" type="checkbox"
+                    name="governorate" [(ngModel)]="selectedGovernorate[governorate]">
+                  <label class="form-check-label" [for]="governorate">{{ governorate }}</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-type mt-3">
+              <h5 class="mb-3">First Release</h5>
+              <div class="mb-3">
+                <input type="number" min="1900" max="2099" step="1" class="form-control" (input)="filterReleaseCars()"
+                  name="first_release" [(ngModel)]="selectedFirstRelease" placeholder="Date of first release...">
+              </div>
+            </div>
+
+            <div class="filter-type my-3">
+              <h5 class="mb-3">Price</h5>
+              <div class="row g-3">
+                <div class="col mb-3">
+                  <input class="form-control" (input)="filterPriceCars()" type="number" name="min_price"
+                    [(ngModel)]="selectedMinPrice" placeholder="from..." aria-label="from...">
+                </div>
+                <div class="col mb-3">
+                  <input class="form-control" (input)="filterPriceCars()" type="number" name="max_price"
+                    [(ngModel)]="selectedMaxPrice" placeholder="to.." aria-label="to..">
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-secondary w-100" (click)="resetFilters()">Reset Filters</button>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="col-xl-10 col-md-9 col-sm-8 col-12 position-relative">
+        <div *ngIf="foundData()">
+          <div class="row row-cols-xl-3 row-cols-md-2 row-cols-1 g-md-2 g-3 ">
+            <div *ngFor="let car of cars">
+              <div class="col">
+                <div class="card position-relative" routerLink="/car/{{car.id}}">
+                  <div class="layer position-absolute h-50 w-100">
+                    <div class="book" routerLink="/bookingCar/{{car.id}}"> Book Car</div>
+                  </div>
+                  <div class="fav">
+                    <img *ngIf="car.photos.length > 0" src="../../../assets/{{car.photos[0].photo}}" class="card-img"
+                      alt="car photo">
+                    <img *ngIf="car.photos.length == 0" src="../../../assets/cars/noPhoto.png" class="card-img"
+                      alt="car photo">
+                    <button class="fav-btn"><i class="fa-regular fa-star"></i></button>
+                  </div>
+                  <div class="card-body d-flex flex-column justify-content-center">
+                    <h4>{{ car.type }}</h4>
+                    <p>Model: {{ car.model }}</p>
+                    <p>Price: ${{ car.price_rent }}</p>
+                    <p>Location: {{ car.city }}, {{ car.governorate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-100 d-flex justify-content-center mt-5" *ngIf="paginate">
+              <ul class="pagination">
+                <li *ngFor="let link of paginationLinks()" [class.active]="link.active">
+                  <a *ngIf="link.url" (click)="getCars(+link.label)">{{ link.label }}</a>
+                  <span *ngIf="!link.url">{{ link.label }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- when loading page wait data-->
+        <div *ngIf="!foundData()" class="img-not-found">
+          <img src="../../../assets/no-data-found.jpg" alt="No Data Found">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

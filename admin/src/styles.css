@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  /* --main-color: rgb(235, 242, 246);
+  --white-color: #FFF;
+  --grey-color: rgb(134, 134, 134);
+  --small-font: 16px !important;
+  --text-main: rgb(83, 115, 253);
+  --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
+  --rating-color: #ffc908; */
+  --main-color-dark: #ffca00;
+  --main-color-light: #ffe06d;
+  --secondary-color-dark: #262f39;
+  --secondary-color-light: #3e4c5c;
+  --white-color: #ffffffd9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  cursor: pointer;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  ;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.container{
+  min-height: 75vh;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-red {
+  background-color: rgba(237, 236, 236, 0.8);
+}
+.text-{color: #f9ca20 !important}
+.icon- {color: #f9ca20 !important}

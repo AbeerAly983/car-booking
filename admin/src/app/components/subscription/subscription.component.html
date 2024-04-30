@@ -1,0 +1,182 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-2 p-0">
+      <app-sidebar></app-sidebar>
+    </div>
+
+
+    <div class="col-10">
+      <div class="p-0 p-sm-2 mt-5">
+        <div class="head ">
+          <h4>Subscribers</h4>
+        </div>
+        <div class="parent">
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllSub'"
+            (click)="setActiveDiv('AllSub');showAllSub()">
+
+            <div class="content">{{countOfAllSub?.num_all_subscription}} </div>
+            <div class="title">
+              All Subscriptions
+            </div>
+          </div>
+
+          <div class="child d-flex flex-column" [class.active]="activeDiv === 'AllSubThisMonth'"
+            (click)="setActiveDiv('AllSubThisMonth');showAllSubThisMonth()">
+            <div class="content">{{countOfAllSub?.num_one_month_subscription}}</div>
+            <div class="title">
+              Monthly Subscriptions
+            </div>
+          </div>
+
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'AllSubThreeMonth'"
+            (click)="setActiveDiv('AllSubThreeMonth');showAllSubThreeMonth()">
+            <div class="content">{{countOfAllSub?.num_three_months_subscription}}</div>
+            <div class="title">
+              Subscriptions of Three Months
+            </div>
+          </div>
+          <div class="child  d-flex flex-column" [class.active]="activeDiv === 'AllSubThisYear'"
+            (click)="setActiveDiv('AllSubThisYear');showAllSubThisYear()">
+            <div class="content">{{countOfAllSub?.num_one_year_subscription}}</div>
+            <div class="title">
+              Annual Subscriptions
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper childs" *ngIf="AllSub">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscription">
+              <tr>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="AllSubThisMonth">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscriptionThisMonth">
+              <tr>
+              <tr>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="AllSubThreeMonth">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscriptionLastThreeMonth">
+              <tr>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrapper childs" *ngIf="AllSubThisYear">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Car Id</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sub. Duration</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of AllSubscriptionThisYear">
+              <tr>
+                <td>
+                  <h6>{{user.car_id}}</h6>
+                </td>
+                <th>
+                  <h6>{{user.price}}</h6>
+                </th>
+                <th>
+                  <h6>{{user.Subscription_period}}</h6>
+                </th>
+                <td>
+                  <h6>{{user.start_date}}</h6>
+                </td>
+                <td>
+                  <h6>{{user.end_date}}</h6>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

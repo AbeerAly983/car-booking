@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div *ngIf="foundData()">
+        <div class="row justify-content-between">
+            <div class="col-xl-5 col-12">
+                <h2 class="mb-5">{{carDetails?.type}} {{carDetails?.model}}</h2>
+
+                <form class="form position-relative" #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm.value)" ngNativeValidate>
+                    <div class="mb-3">
+                        <label class="mb-2">Start Date:</label>
+                        <input type="date" class="form-control" name="start_date" [ngModel] #stDate="ngModel"
+                            min={{today}} [class.is-invalid]="stDate.invalid && stDate.touched" required
+                            (change)="disableSpecificDates($event)">
+                        <div *ngIf="stDate.errors && stDate.touched">
+                            <small class="text-danger" *ngIf="stDate.errors?.['required']">Start Date is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">End Date:</label>
+                        <input type="date" class="form-control" name="end_date" [ngModel] #endDate="ngModel"
+                            [min]="stDate.value ? stDate.value : today"
+                            [class.is-invalid]="endDate.invalid && endDate.touched" required
+                            (change)="disableSpecificDates($event)">
+                        <div *ngIf="endDate.errors && endDate.touched">
+                            <small class="text-danger" *ngIf="endDate.errors?.['required']">End Date is required</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="mb-2">Phone:</label>
+                        <div class=" input-group">
+                            <span class="input-group-text" id="basic-addon1">+20</span>
+                            <input type="number" class="form-control" name="phone" [ngModel] #phone="ngModel"
+                                pattern="^(1|01)[0125]\d{8}$" [class.is-invalid]="phone.invalid && phone.touched"
+                                required>
+                        </div>
+
+                        <div *ngIf="phone.errors && phone.touched">
+                            <small class="text-danger" *ngIf="phone.errors?.['required']">Phone is required</small>
+                            <small class="text-danger" *ngIf="phone.errors?.['pattern']">Phone is not valid</small>
+                        </div>
+                    </div>
+
+                    <div *ngIf="stDate.valid && endDate.valid">
+                        {{checkBook(bookForm.value)}}
+                        <p class="fw-bold">Total Price: {{ data.total_price }}</p>
+                        <p class="fw-bold">Number of Rental Days: {{ data.num_days }}</p>
+                        <button class="btn w-100 submit mt-3" type="submit" [disabled]="bookForm.invalid">Confirm Booking</button>
+                    </div>
+                    
+                    <div class="alert alert-warning" role="alert" *ngIf="valid">
+                        {{msgAlert}}
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-xl-7 col-12 ">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleIndicators"
+                            *ngFor="let photoCar of carDetails?.photos; let i = index" [attr.data-bs-slide-to]="i"
+                            [class.active]="i === 0"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item" *ngFor="let photoCar of carDetails?.photos; let i = index"
+                            [class.active]="i === 0">
+                            <img src="../../../../assets/{{photoCar.photo}}" class="d-block w-75 m-auto" alt="...">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!foundData()" class="img-found">
+        <img src="../../../../assets/no-data-found.jpg" alt="">
+    </div>
+
+
+</div>
+<app-footer></app-footer>
